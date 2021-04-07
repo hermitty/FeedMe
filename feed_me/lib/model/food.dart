@@ -1,0 +1,4 @@
+class Food {
+  String name;
+  
+}
