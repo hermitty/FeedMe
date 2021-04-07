@@ -1,3 +1,4 @@
+import 'package:feed_me/injector/injector.dart';
 import 'package:feed_me/model/food.dart';
 import 'package:feed_me/service/food_service.dart';
 import 'package:feed_me/view/helper/debouncer.dart';
@@ -12,7 +13,7 @@ class FoodList extends StatefulWidget {
 }
 
 class FoodListState extends State<FoodList> {
-  final _foodService = FoodService();
+  final _foodService = injector.get<FoodService>();
   final _debouncer = Debouncer(milliseconds: 300);
   final textFieldController = TextEditingController();
 

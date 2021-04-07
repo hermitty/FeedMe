@@ -1,8 +1,10 @@
 import 'package:feed_me/view/food/list/food_list.dart';
 import 'package:feed_me/view/side_menu/side_menu.dart';
 import 'package:flutter/material.dart';
+import 'injector/injector.dart';
 
 void main() {
+  setup();
   runApp(FeedMeApp());
 }
 
