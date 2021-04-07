@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'btn_add_food.dart';
-import 'btn_add_tab.dart';
+import 'btn_manage_tag.dart';
 import 'header_side_menu.dart';
 
 class SideMenu extends StatelessWidget {

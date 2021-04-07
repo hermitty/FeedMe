@@ -10,7 +10,7 @@ class AddTagBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.tag),
-      title: Text('Add tag'),
+      title: Text('Manage tag'),
       onTap: () => {
         Navigator.of(context).push(MaterialPageRoute(builder: (_) {
           return null;
