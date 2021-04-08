@@ -1,4 +1,5 @@
 class FoodSimple {
+  int id;
   String name;
   String image;
   bool favourite;

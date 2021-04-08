@@ -1,13 +1,38 @@
+import 'package:feed_me/injector/injector.dart';
 import 'package:feed_me/model/food.dart';
+import 'package:feed_me/service/food_service.dart';
 import 'package:flutter/material.dart';
 
-class FoodListItem extends StatelessWidget {
+class FoodListItem extends StatefulWidget {
   final FoodSimple food;
-  Widget icon;
 
-  FoodListItem(this.food)
-  {
-    icon = Icon(food.favourite ? Icons.favorite : Icons.favorite_border);
+  FoodListItem(this.food);
+
+  @override
+  _FoodListItemState createState() =>
+      _FoodListItemState(this.food.favourite, this.food.id);
+}
+
+class _FoodListItemState extends State<FoodListItem> {
+  final foodService = injector.get<FoodService>();
+  final int foodId;
+  Widget icon;
+  bool favourite;
+
+  _FoodListItemState(this.favourite, this.foodId) {
+    setFavouriteIcon(this.favourite);
+  }
+
+  void setFavourite(bool favourite) {
+    setState(() {
+      setFavouriteIcon(favourite);
+    });
+    this.favourite = favourite;
+    foodService.setFvouriteForFood(foodId, favourite);
+  }
+
+  void setFavouriteIcon(bool favourite) {
+    icon = Icon(favourite ? Icons.favorite : Icons.favorite_border);
   }
 
   @override
@@ -22,21 +47,21 @@ class FoodListItem extends StatelessWidget {
             }));
           },
           child: Image.network(
-            food.image,
+            widget.food.image,
             fit: BoxFit.cover,
           ),
         ),
         footer: GridTileBar(
           backgroundColor: new Color.fromRGBO(32, 32, 32, 0.7),
           title: Text(
-            food.name,
+            widget.food.name,
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
             icon: icon,
             color: Theme.of(context).accentColor,
             onPressed: () {
-              icon = Icon(Icons.favorite);
+              setFavourite(!favourite);
             },
           ),
         ),
