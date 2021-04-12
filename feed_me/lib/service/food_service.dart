@@ -8,10 +8,12 @@ List<FoodSimple> simpleFood = [
   ];
 
 class FoodService {
-  Future addFood(Food food) async {}
-  Future editFood(Food food) async {}
+  Future addFood(FoodToSave food) async {
+
+  }
+  Future editFood(FoodToSave food) async {}
   Future deleteFood(int foodId) async {}
-  Future<Food> getFoodById(int id) async { return Food();}
+  Future<FoodToSave> getFoodById(int id) async { return FoodToSave();}
   Future<List<FoodSimple>> getFoodByTags(List<Tag> tags) async { return <FoodSimple>[]; }
   Future<List<FoodSimple>> getFood() async { return simpleFood; }
   Future setFvouriteForFood(int foodId, bool value) async {}

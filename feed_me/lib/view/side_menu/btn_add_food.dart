@@ -1,3 +1,4 @@
+import 'package:feed_me/view/food/modify_food/food_edit.dart';
 import 'package:flutter/material.dart';
 
 class AddFoodBtn extends StatelessWidget {
@@ -12,7 +13,7 @@ class AddFoodBtn extends StatelessWidget {
       title: Text('Add food'),
       onTap: () => {
         Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-          return null;
+          return FoodEdit();
         }))
       },
     );
