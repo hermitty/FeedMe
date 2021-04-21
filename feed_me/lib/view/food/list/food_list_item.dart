@@ -41,16 +41,19 @@ class _FoodListItemState extends State<FoodListItem> {
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return null;
-            }));
-          },
-          child: Image.network(
-            widget.food.image,
-            fit: BoxFit.cover,
-          ),
-        ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                return null;
+              }));
+            },
+            child: widget.food.image == null || widget.food.image.isEmpty
+                ? Image(
+                    image: AssetImage('assets/empty-image.png'),
+                    fit: BoxFit.cover)
+                : Image.network(
+                    widget.food.image,
+                    fit: BoxFit.cover,
+                  )),
         footer: GridTileBar(
           backgroundColor: new Color.fromRGBO(32, 32, 32, 0.7),
           title: Text(
