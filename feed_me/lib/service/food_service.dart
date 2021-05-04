@@ -18,12 +18,12 @@ import 'package:feed_me/service/db_service.dart';
 // ];
 
 class FoodService {
-final db = new DatabaseHelper();
+final _db = new DatabaseHelper();
 
   Future addFood(FoodToSave food) async {
     var foodModel =
         FoodModel(food.name, food.description, '', false);
-    db.saveFoodModel(foodModel);
+    _db.saveFoodModel(foodModel);
   }
 
   Future editFood(FoodToSave food) async {}
@@ -37,7 +37,7 @@ final db = new DatabaseHelper();
   }
 
   Future<List<FoodSimple>> getFood() async {
-    return db.getFoodSimple();
+    return _db.getFoodSimple();
   }
 
   Future setFvouriteForFood(int foodId, bool value) async {}

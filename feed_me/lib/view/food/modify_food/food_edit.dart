@@ -39,7 +39,7 @@ class _FoodEditState extends State<FoodEdit> {
               InputField(nameController, 'name'),
               InputField(decsriptionController, 'description'),
               SizedBox(height: 15),
-              TagInput(tagList),
+              TagInput(),
               SizedBox(height: 25.0),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(

@@ -1,4 +1,5 @@
 import 'package:feed_me/model/food.dart';
+import 'package:feed_me/model/tag.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:async';
@@ -85,5 +86,12 @@ class DatabaseHelper {
 
 
     return res > 0 ? true : false;
+  }
+
+  Future<List<Tag>> getTags() async {
+    return [
+      Tag('test1'),
+      Tag('test2')
+    ].toList();
   }
 }
