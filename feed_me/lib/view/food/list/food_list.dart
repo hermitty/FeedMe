@@ -78,7 +78,15 @@ class FoodListState extends State<FoodList> {
           SizedBox(
             height: 50.0,
           ),
-          filterField,
+          Row(
+            children: [
+              IconButton(
+            icon: new Icon(Icons.menu_sharp),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+              Expanded(child: filterField),
+            ],
+          ),
           Expanded(child: itemList),
         ],
       ),
