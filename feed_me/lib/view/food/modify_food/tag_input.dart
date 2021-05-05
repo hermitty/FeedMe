@@ -4,10 +4,10 @@ import 'package:feed_me/service/tag_service.dart';
 import 'package:feed_me/view/helper/tag_input_field/tag_input_field.dart';
 import 'package:flutter/widgets.dart';
 
+// ignore: must_be_immutable
 class TagInput extends StatefulWidget {
-  TagInput({
-    Key key,
-  }) : super(key: key);
+  List<Tag> selectedTags;
+  TagInput(this.selectedTags);
 
   @override
   _TagInputState createState() => _TagInputState();
@@ -15,15 +15,13 @@ class TagInput extends StatefulWidget {
 
 class _TagInputState extends State<TagInput> {
   final _tagService = injector.get<TagService>();
-  List<Tag> selectedList = [];
   List<Tag> suggestionTags = [];
   TagInputField inputField;
 
   @override
   void initState() {
     super.initState();
-    inputField = TagInputField(suggestionTags);
-    selectedList = inputField.selectedList;
+    inputField = TagInputField(suggestionTags, widget.selectedTags);
     _tagService.getTags().then((value) => setList(value));
   }
 

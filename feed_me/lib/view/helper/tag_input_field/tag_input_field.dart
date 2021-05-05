@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_tagging/flutter_tagging.dart';
 
+// ignore: must_be_immutable
 class TagInputField extends StatefulWidget {
-  TagInputField(this.suggestionTags);
+  List<Tag> selectedTags;
+  List<Tag> suggestionTags;
 
-  List<Tag> selectedList = [];
-  List<Tag> suggestionTags = [];
+  TagInputField(this.suggestionTags, this.selectedTags);
 
   @override
   _TagInputFieldState createState() => _TagInputFieldState();
@@ -19,7 +20,7 @@ class _TagInputFieldState extends State<TagInputField> {
     return FlutterTagging<Tag>(
         suggestionsBoxConfiguration:
             SuggestionsBoxConfiguration(autoFlipDirection: true),
-        initialItems: widget.selectedList,
+        initialItems: widget.selectedTags,
         textFieldConfiguration: TextFieldConfiguration(
           decoration: InputDecoration(
             border: InputBorder.none,

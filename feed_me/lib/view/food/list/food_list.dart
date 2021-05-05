@@ -24,7 +24,7 @@ class FoodListState extends State<FoodList> {
   void initState() {
     super.initState();
 
-    _foodService.getFood().then((value) => setList(value));
+    _foodService.getFoodSimpleList().then((value) => setList(value));
   }
 
   void setList(List<FoodSimple> list) {
