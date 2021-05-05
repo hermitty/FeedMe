@@ -1,6 +1,5 @@
 import 'package:feed_me/injector/injector.dart';
 import 'package:feed_me/model/food.dart';
-import 'package:feed_me/model/tag.dart';
 import 'package:feed_me/service/food_service.dart';
 import 'package:feed_me/view/food/modify_food/photo_picker.dart';
 import 'package:feed_me/view/food/modify_food/tag_input.dart';
@@ -18,9 +17,8 @@ class FoodEdit extends StatefulWidget {
 
 class _FoodEditState extends State<FoodEdit> {
   File _image;
-  var tagList = <Tag>[];
+  var tagList = <String>[];
   final foodService = injector.get<FoodService>();
-  List<Tag> selectedTags = [];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class _FoodEditState extends State<FoodEdit> {
               InputField(nameController, 'name'),
               InputField(decsriptionController, 'description'),
               SizedBox(height: 15),
-              TagInput(selectedTags),
+              TagInput(),
               SizedBox(height: 25.0),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -61,12 +59,12 @@ class _FoodEditState extends State<FoodEdit> {
 
   void saveFood(TextEditingController nameController,
       TextEditingController decsriptionController) {
-    FoodDetails food = FoodDetails();
+    FoodToSave food = FoodToSave();
     food.name = nameController.text;
     food.description = decsriptionController.text;
-    food.image = null;//_image.path;
-    food.tags = selectedTags;
-    food.link = null;
+    food.image = _image;
+    food.tags = tagList;
+
     foodService.addFood(food);
   }
 }

@@ -28,7 +28,7 @@ class _FoodListItemState extends State<FoodListItem> {
       setFavouriteIcon(favourite);
     });
     this.favourite = favourite;
-    foodService.setFavouriteForFood(foodId, favourite);
+    foodService.setFvouriteForFood(foodId, favourite);
   }
 
   void setFavouriteIcon(bool favourite) {
