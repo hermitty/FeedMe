@@ -58,7 +58,7 @@ class _FoodListItemState extends State<FoodListItem> {
           ),
           trailing: IconButton(
             icon: icon,
-            color: Theme.of(context).accentColor,
+            color: ThemeData().colorScheme.secondary,
             onPressed: () {
               setFavourite(!favourite);
             },

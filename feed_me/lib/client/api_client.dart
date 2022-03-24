@@ -23,23 +23,23 @@ class ApiClient {
   Future<List<Food>> getFood(
       int page, String searchText, List<String> selectedTags) async {
     try {
-      var uri = "$_baseUrl/Recipe/search?Page=$page&Size=15";
-
       Map<String, String> queryParams = {'Page': page.toString(), 'Size': '15'};
 
       if (searchText != null && searchText != '') {
-        queryParams.addAll( {'Name':searchText});
+        queryParams.addAll({'Name': searchText});
       }
 
       if (selectedTags != null && selectedTags.length != 0) {
         selectedTags.forEach((element) {
-                  queryParams.addAll( {'Tags':element});
+          queryParams.addAll({'Tags': element});
         });
       }
-      var url = Uri.parse("$_baseUrl/Recipe/search").replace(queryParameters: queryParams);
-      final response = await http.get(Uri.parse("$_baseUrl/Recipe/search").replace(queryParameters: queryParams));
+      var uri = Uri.parse("$_baseUrl/Recipe/search")
+          .replace(queryParameters: queryParams);
+      final response = await http.get(uri);
       final result = json.decode(response.body);
-      final food = (result['elements'] as List).map((e) => Food.map(e)).toList();
+      final food =
+          (result['elements'] as List).map((e) => Food.map(e)).toList();
       return food;
     } catch (err) {
       print('Something went wrong');
