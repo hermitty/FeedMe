@@ -1,37 +1,25 @@
 import 'dart:io';
+import 'package:flutter_guid/flutter_guid.dart';
 
-class FoodSimple {
-  int id;
+class Food {
+  Guid id;
   String name;
   String image;
-  bool favourite;
-
-  FoodSimple(this.id, this.name, this.image, this.favourite);
-}
-
-class FoodToSave {
-  int id;
-  String name;
-  File image;
   String description;
   List<String> tags;
-}
 
-class FoodModel {
-  int id;
-  String name;
-  String image;
-  String description;
-  bool favourite;
+  Food(this.name, this.description, this.image, this.tags);
 
+  String tagsToString() {
+    if (tags == null || tags.length == 0) return '';
+    return tags.join(', ');
+  }
 
-  FoodModel(this.name, this.description, this.image, this. favourite);
-
-  FoodModel.map(dynamic obj) {
+  Food.map(dynamic obj) {
+    this.id = new Guid(obj["id"]);
     this.name = obj["name"];
     this.description = obj["description"];
-    this.image = obj["image"];
-    this.favourite = obj["favourite"];
+    this.tags = (obj["tags"] as List).map((e) => e.toString()).toList();
   }
 
   Map<String, dynamic> toMap() {
@@ -40,12 +28,15 @@ class FoodModel {
     map["name"] = name;
     map["description"] = description;
     map["image"] = image;
-    map["favourite"] = favourite;
 
     return map;
   }
+}
 
-  void setFoodModelId(int id) {
-    this.id = id;
-  }
+class FoodToSave {
+  Guid id;
+  String name;
+  File image;
+  String description;
+  List<String> tags;
 }

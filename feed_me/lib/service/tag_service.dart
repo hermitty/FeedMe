@@ -1,8 +1,16 @@
+import 'package:feed_me/client/api_client.dart';
+import 'package:feed_me/injector/injector.dart';
 import 'package:feed_me/model/tag.dart';
-import 'db_service.dart';
 
 class TagService {
-final _db = new DatabaseHelper();
+  final _api = injector.get<ApiClient>();
 
-  Future<List<Tag>> getTags() async => await _db.getTags();
+  List<Tag> tags;
+
+  Future<List<Tag>> refreshTags() async => tags = await _api.getTags();
+  
+  Future<List<Tag>> getTags() async {
+    if (tags == null) await refreshTags();
+    return tags;
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:feed_me/injector/injector.dart';
 import 'package:feed_me/model/food.dart';
+import 'package:feed_me/model/tag.dart';
 import 'package:feed_me/service/food_service.dart';
 import 'package:feed_me/view/food/modify_food/photo_picker.dart';
 import 'package:feed_me/view/food/modify_food/tag_input.dart';
@@ -19,6 +20,7 @@ class _FoodEditState extends State<FoodEdit> {
   File _image;
   var tagList = <String>[];
   final foodService = injector.get<FoodService>();
+  List<Tag> selectedTags = [];
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,10 @@ class _FoodEditState extends State<FoodEdit> {
         text: widget.food != null ? widget.food.name : '');
     var decsriptionController = new TextEditingController(
         text: widget.food != null ? widget.food.description : '');
+
+    var tagInput = TagInput(onChanged: (value) {
+      selectedTags = value;
+    });
 
     return Scaffold(
       body: Container(
@@ -39,7 +45,7 @@ class _FoodEditState extends State<FoodEdit> {
               InputField(nameController, 'name'),
               InputField(decsriptionController, 'description'),
               SizedBox(height: 15),
-              TagInput(),
+              tagInput,
               SizedBox(height: 25.0),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -63,7 +69,7 @@ class _FoodEditState extends State<FoodEdit> {
     food.name = nameController.text;
     food.description = decsriptionController.text;
     food.image = _image;
-    food.tags = tagList;
+    food.tags = selectedTags.map((e) => e.name).toList();
 
     foodService.addFood(food);
   }

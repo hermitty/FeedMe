@@ -1,12 +1,10 @@
 import 'package:flutter_tagging/flutter_tagging.dart';
 
 class Tag extends Taggable {
-  int id = 0;
-  String name;
-  int popularity = 0;
+  final String name;
 
   Tag(this.name);
-  Tag.existing(this.id, this.name, this.popularity);
+  Tag.existing(this.name);
 
   @override
   List<Object> get props => [name];

@@ -33,6 +33,7 @@ dependencies:
   sqflite:  ^2.0.0
   path_provider: ^2.0.1
   flutter_tagging: ^3.0.0
+  flutter_guid: ^0.2.0
 
 
 dev_dependencies:
