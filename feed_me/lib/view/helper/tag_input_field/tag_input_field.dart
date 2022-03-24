@@ -1,12 +1,11 @@
 import 'package:feed_me/model/tag.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_tagging/flutter_tagging.dart';
 
 class TagInputField extends StatefulWidget {
-  final ValueChanged<List<Tag>> onChanged;
+  final ValueChanged<List<Tag>>? onChanged;
   final bool additionEnabled;
-  final List<Tag> suggestionTags;
+  final List<Tag>? suggestionTags;
 
   TagInputField(
       {this.suggestionTags, this.onChanged, this.additionEnabled = true});
@@ -69,14 +68,14 @@ class _TagInputFieldState extends State<TagInputField> {
         );
       },
       onChanged: () {
-        widget.onChanged(selectedTags);
+        widget.onChanged!(selectedTags);
       },
     );
   }
 
   Future<List<Tag>> getSuggestedTags(String query) async {
     await Future.delayed(Duration(milliseconds: 200), null);
-    return widget.suggestionTags
+    return widget.suggestionTags!
         .where((lang) => lang.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
   }

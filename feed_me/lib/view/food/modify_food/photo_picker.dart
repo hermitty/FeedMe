@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
 class PhotoPicker extends StatefulWidget {
-  File _image;
+  File? _image;
 
   PhotoPicker(this._image);
 
@@ -15,10 +15,10 @@ class PhotoPicker extends StatefulWidget {
 class _PhotoPickerState extends State<PhotoPicker> {
   Future getImage() async {
     var imagePicker = new ImagePicker();
-    var pickedImage = await imagePicker.getImage(source: ImageSource.gallery);
+    var pickedImage = await imagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
-      widget._image = File(pickedImage.path);
+      widget._image = File(pickedImage!.path);
     });
   }
 
@@ -36,7 +36,7 @@ class _PhotoPickerState extends State<PhotoPicker> {
                 height: 180.0,
                 child: (widget._image != null)
                     ? Image.file(
-                        widget._image,
+                        widget._image!,
                         fit: BoxFit.fill,
                       )
                     : Image(

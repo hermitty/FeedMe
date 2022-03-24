@@ -5,11 +5,11 @@ import 'package:feed_me/view/helper/tag_input_field/tag_input_field.dart';
 import 'package:flutter/widgets.dart';
 
 class TagInput extends StatefulWidget {
-  final ValueChanged<List<Tag>> onChanged;
+  final ValueChanged<List<Tag>>? onChanged;
   final bool additionEnabled;
 
   TagInput({
-    Key key,
+    Key? key,
     this.onChanged,
     this.additionEnabled = true,
   }) : super(key: key);
@@ -21,7 +21,7 @@ class TagInput extends StatefulWidget {
 class _TagInputState extends State<TagInput> {
   final _tagService = injector.get<TagService>();
   List<Tag> suggestionTags = [];
-  TagInputField inputField;
+  late TagInputField inputField;
 
   @override
   void initState() {
@@ -29,16 +29,16 @@ class _TagInputState extends State<TagInput> {
     inputField = TagInputField(
       suggestionTags: suggestionTags,
       onChanged: (value) {
-        widget.onChanged(value);
+        widget.onChanged!(value);
       },
       additionEnabled: widget.additionEnabled,
     );
     _tagService.getTags().then((value) => setList(value));
   }
 
-  void setList(List<Tag> list) {
+  void setList(List<Tag>? list) {
     setState(() {
-      suggestionTags.addAll(list);
+      suggestionTags.addAll(list!);
     });
   }
 

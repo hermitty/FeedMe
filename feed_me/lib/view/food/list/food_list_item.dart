@@ -1,6 +1,5 @@
 import 'package:feed_me/model/food.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_guid/flutter_guid.dart';
 
 class FoodListItem extends StatefulWidget {
   final Food food;
@@ -12,9 +11,9 @@ class FoodListItem extends StatefulWidget {
 }
 
 class _FoodListItemState extends State<FoodListItem> {
-  final Guid foodId;
-  Widget icon;
-  bool favourite;
+  final String? foodId;
+  late Widget icon;
+  late bool favourite;
 
   _FoodListItemState(this.foodId) {
     setFavouriteIcon(false);
@@ -40,14 +39,14 @@ class _FoodListItemState extends State<FoodListItem> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                 return null;
-              }));
+              } as Widget Function(BuildContext)));
             },
-            child: widget.food.image == null || widget.food.image.isEmpty
+            child: widget.food.image == null || widget.food.image!.isEmpty
                 ? Image(
                     image: AssetImage('assets/empty-image.png'),
                     fit: BoxFit.cover)
                 : Image.network(
-                    widget.food.image,
+                    widget.food.image!,
                     fit: BoxFit.cover,
                   )),
         footer: GridTileBar(

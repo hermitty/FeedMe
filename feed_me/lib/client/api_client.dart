@@ -25,11 +25,11 @@ class ApiClient {
     try {
       Map<String, String> queryParams = {'Page': page.toString(), 'Size': '15'};
 
-      if (searchText != null && searchText != '') {
+      if (searchText != '') {
         queryParams.addAll({'Name': searchText});
       }
 
-      if (selectedTags != null && selectedTags.length != 0) {
+      if (selectedTags.length != 0) {
         selectedTags.forEach((element) {
           queryParams.addAll({'Tags': element});
         });

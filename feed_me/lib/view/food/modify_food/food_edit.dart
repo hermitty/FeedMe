@@ -17,7 +17,7 @@ class FoodEdit extends StatefulWidget {
 }
 
 class _FoodEditState extends State<FoodEdit> {
-  File _image;
+  File? _image;
   var tagList = <String>[];
   final foodService = injector.get<FoodService>();
   List<Tag> selectedTags = [];

@@ -5,7 +5,7 @@ import 'package:feed_me/view/food/modify_food/tag_input.dart';
 import 'package:flutter/material.dart';
 
 class FoodList extends StatefulWidget {
-  const FoodList({Key key}) : super(key: key);
+  const FoodList({Key? key}) : super(key: key);
 
   @override
   _FoodListState createState() => _FoodListState();
@@ -45,7 +45,7 @@ class _FoodListState extends State<FoodList> {
     if (_hasNextPage == true &&
         _isFirstLoadRunning == false &&
         _isLoadMoreRunning == false &&
-        _controller.position.extentAfter < 300) {
+        _controller!.position.extentAfter < 300) {
       setState(() {
         _isLoadMoreRunning = true;
       });
@@ -70,7 +70,7 @@ class _FoodListState extends State<FoodList> {
     }
   }
 
-  ScrollController _controller;
+  ScrollController? _controller;
 
   @override
   void initState() {
@@ -81,7 +81,7 @@ class _FoodListState extends State<FoodList> {
 
   @override
   void dispose() {
-    _controller.removeListener(_loadMore);
+    _controller!.removeListener(_loadMore);
     super.dispose();
   }
 

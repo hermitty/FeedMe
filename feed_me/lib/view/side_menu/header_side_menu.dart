@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SideMenuHeader extends StatelessWidget {
   const SideMenuHeader({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

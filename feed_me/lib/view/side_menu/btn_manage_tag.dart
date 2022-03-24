@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AddTagBtn extends StatelessWidget {
   const AddTagBtn({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -14,7 +14,7 @@ class AddTagBtn extends StatelessWidget {
       onTap: () => {
         Navigator.of(context).push(MaterialPageRoute(builder: (_) {
           return null;
-        }))
+        } as Widget Function(BuildContext)))
       },
     );
   }

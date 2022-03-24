@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AddFoodBtn extends StatelessWidget {
   const AddFoodBtn({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
